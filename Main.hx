@@ -15,6 +15,7 @@ class Main {
 
         var player:Player = new Player("player", startingRoom);
         var commandParser:CommandParser = new CommandParser();
+        var commandExecutor:CommandExecutor = new CommandExecutor(player);
         Sys.println("Welcome");
         player.showCurrentRoom();
 
@@ -22,20 +23,11 @@ class Main {
         while (true) {
             nextMove = Sys.stdin().readLine();
             commandParser.parseCommand(nextMove);
-
-            if (commandParser.verb == "go") {
-                if (commandParser.noun == "north") {
-                    player.goNorth();
-                } else if(commandParser.noun == "south") {
-                    player.goSouth();
-                } else if(commandParser.noun == "west") {
-                    player.goWest();
-                } else if(commandParser.noun == "east") {
-                    player.goEast();
-                }
-            } else if(commandParser.verb == "quit") {
+            commandExecutor.execute(commandParser.verb, commandParser.noun);
+            
+            if (commandExecutor.status == 'exit') {
                 break;
-            } else {
+            } else if(commandExecutor.status == 'unknown command') {
                 Sys.println("Command not understand.");
             }
         }

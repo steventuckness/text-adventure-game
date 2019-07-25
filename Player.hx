@@ -4,12 +4,12 @@ class Player {
     public var name: String;
     public var currentRoom: Room;
 
-    public function goNorth(): Void {
+    public function goNorth(): Void {        
         if (this.canGoNorth()) {
             this.currentRoom = this.currentRoom.north;
             this.showCurrentRoom();
         } else {
-            this.noCanDo();
+            this.showCannotGo();
         }    
     }
 
@@ -17,9 +17,8 @@ class Player {
         if (this.canGoSouth()) {
             this.currentRoom = this.currentRoom.south;
             this.showCurrentRoom();
-
         }  else {
-            this.noCanDo();
+            this.showCannotGo();
         } 
     }
 
@@ -28,7 +27,7 @@ class Player {
             this.currentRoom = this.currentRoom.east;
             this.showCurrentRoom();
         } else {
-            this.noCanDo();
+            this.showCannotGo();
         }    
     }
 
@@ -37,7 +36,7 @@ class Player {
             this.currentRoom = this.currentRoom.west;
             this.showCurrentRoom();
         } else {
-            this.noCanDo();
+            this.showCannotGo();
         }    
     }
 
@@ -45,7 +44,7 @@ class Player {
         Sys.println("You are in the '" + this.currentRoom.name +  "', " + this.currentRoom.description);
     }
 
-    private function noCanDo(): Void {
+    private function showCannotGo(): Void {
         Sys.println("You cannot go this direction.");
     }
 

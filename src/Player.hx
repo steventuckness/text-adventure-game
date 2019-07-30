@@ -3,10 +3,11 @@ package ;
 class Player {
     public var name: String;
     public var currentRoom: Room;
+    public var roomManager: RoomManager;
 
     public function goNorth(): Void {        
         if (this.canGoNorth()) {
-            this.currentRoom = this.currentRoom.north;
+            this.currentRoom = this.roomManager.getRoom(this.currentRoom.northRoomId);
             this.showCurrentRoom();
         } else {
             this.showCannotGo();
@@ -15,7 +16,7 @@ class Player {
 
      public function goSouth(): Void {
         if (this.canGoSouth()) {
-            this.currentRoom = this.currentRoom.south;
+            this.currentRoom = this.roomManager.getRoom(this.currentRoom.southRoomId);
             this.showCurrentRoom();
         }  else {
             this.showCannotGo();
@@ -24,7 +25,7 @@ class Player {
 
      public function goEast(): Void {
         if (this.canGoEast()) {
-            this.currentRoom = this.currentRoom.east;
+            this.currentRoom = this.roomManager.getRoom(this.currentRoom.eastRoomId);
             this.showCurrentRoom();
         } else {
             this.showCannotGo();
@@ -33,7 +34,7 @@ class Player {
 
      public function goWest(): Void {
         if (this.canGoWest()) {
-            this.currentRoom = this.currentRoom.west;
+            this.currentRoom = this.roomManager.getRoom(this.currentRoom.westRoomId);
             this.showCurrentRoom();
         } else {
             this.showCannotGo();
@@ -49,23 +50,24 @@ class Player {
     }
 
     private function canGoNorth(): Bool {
-        return this.currentRoom.north != null;
+        return this.currentRoom.northRoomId != null;
     }
 
     private function canGoSouth(): Bool {
-        return this.currentRoom.south != null;
+        return this.currentRoom.southRoomId != null;
     }
 
     private function canGoWest(): Bool {
-        return this.currentRoom.west != null;
+        return this.currentRoom.westRoomId != null;
     }
 
     private function canGoEast(): Bool {
-        return this.currentRoom.east != null;
+        return this.currentRoom.eastRoomId != null;
     }
 
-    public function new(name: String, currentRoom: Room) {
+    public function new(name: String, currentRoom: Room, roomManager: RoomManager) {
         this.name = name;
         this.currentRoom = currentRoom;
+        this.roomManager = roomManager;
     }
 }

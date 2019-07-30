@@ -5,15 +5,9 @@ import Room;
 
 class Main {
     static public function main():Void {
-        var startingRoom: Room = new Room(1, "Starting Room", "It is dark and you can see almost nothing.");
-        var nextRoom: Room = new Room(2, "Next Room", "You can see slightly more more light");
-        var thirdRoom: Room = new Room(3, "Dirty Room", "You see dirt everywhere");
-        startingRoom.north = nextRoom;
-        nextRoom.south = startingRoom;
-        nextRoom.west = thirdRoom;
-        thirdRoom.east = nextRoom;
-
-        var player:Player = new Player("player", startingRoom);
+        var roomLoader:RoomDataLoader = new RoomDataLoader("../level.json");
+        var roomManager:RoomManager = new RoomManager(roomLoader);
+        var player:Player = new Player("player", roomManager.getFirstRoom(), roomManager);
         var commandParser:CommandParser = new CommandParser();
         var commandExecutor:CommandExecutor = new CommandExecutor(player);
         Sys.println("Welcome");

@@ -1,0 +1,19 @@
+{
+	"rooms": [{
+		"id": 0,
+		"name": "Starting Room",
+        "description": "It is dark and you can see almost nothing.",
+        "northRoomId": 1
+	}, {
+        "id": 1,
+        "name": "Next Room",
+        "description": "You can see slightly more more light",
+        "southRoomId": 0,
+        "westRoomId": 2
+    }, {
+        "id": 2,
+        "name": "Dirty Room",
+        "description": "You see dirt everywhere",
+        "eastRoomId": 1
+    }]
+}

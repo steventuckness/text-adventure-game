@@ -1,0 +1,4 @@
+-p src
+--python build/python/text-adventure-game.py
+-main Main
+#--cmd python3 python/text-adventure-game.py

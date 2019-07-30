@@ -1,0 +1,4 @@
+-p src
+-neko text-adventure-game.n
+-main Main
+#--cmd neko text-adventure-game.n

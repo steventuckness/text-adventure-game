@@ -1,0 +1,5 @@
+-p src
+--java bin
+-main Main
+
+# --cmd java -jar bin/Main.jar

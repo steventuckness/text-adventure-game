@@ -27,6 +27,12 @@ class RoomDataLoader {
         var dataRooms:Array<DataRoom> = data.rooms;
         var rooms:Array<Room> = new Array<Room>();
 
+        return this.transform(dataRooms);
+    }
+
+     private function transform(dataRooms: Array<DataRoom>): Array<Room> {
+        var rooms:Array<Room> = new Array<Room>();
+        
         for(i in 0...dataRooms.length) {
             var room:Room = new Room(dataRooms[i].id, dataRooms[i].name, dataRooms[i].description);
             room.northRoomId = dataRooms[i].northRoomId;

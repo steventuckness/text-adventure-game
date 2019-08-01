@@ -7,15 +7,9 @@ class RoomManager {
     public function new(roomDataLoader: RoomDataLoader) {
         this.rooms = new Map<Int, Room>();
         
-        // TODO: fix type issue
-        var dataRooms = roomDataLoader.get();
-        for(i in 0...dataRooms.length) {
-            var room:Room = new Room(dataRooms[i].id, dataRooms[i].name, dataRooms[i].description);
-            room.northRoomId = dataRooms[i].northRoomId;
-            room.southRoomId = dataRooms[i].southRoomId;
-            room.westRoomId = dataRooms[i].westRoomId;
-            room.eastRoomId = dataRooms[i].eastRoomId;
-            this.addRoom(room);
+        var rooms:Array<Room> = roomDataLoader.get();
+        for(i in 0...rooms.length) {
+            this.addRoom(rooms[i]);
         }
     }
 

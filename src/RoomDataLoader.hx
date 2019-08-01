@@ -21,10 +21,21 @@ class RoomDataLoader {
       this.file = file; 
     }
 
-    // TODO: transform from here instead
-    public function get(): Array<DataRoom> {
+    public function get(): Array<Room> {
         var content:String = sys.io.File.getContent(this.file);
-        var rooms:Data = haxe.Json.parse(content);
-        return rooms.rooms;
+        var data:Data = haxe.Json.parse(content);
+        var dataRooms:Array<DataRoom> = data.rooms;
+        var rooms:Array<Room> = new Array<Room>();
+
+        for(i in 0...dataRooms.length) {
+            var room:Room = new Room(dataRooms[i].id, dataRooms[i].name, dataRooms[i].description);
+            room.northRoomId = dataRooms[i].northRoomId;
+            room.southRoomId = dataRooms[i].southRoomId;
+            room.westRoomId = dataRooms[i].westRoomId;
+            room.eastRoomId = dataRooms[i].eastRoomId;
+            rooms.push(room);
+        }
+
+        return rooms;
     }
 }
